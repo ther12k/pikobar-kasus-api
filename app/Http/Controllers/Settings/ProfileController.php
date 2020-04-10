@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
@@ -10,14 +11,19 @@ class ProfileController extends Controller
 {
     public function index(Request $request)
     {
+        /**
+         * @var User $user
+         */
         $user = $request->user();
+        $role = $user->roles()->first();
+        $permissions = $user->getAllPermissions();
 
         return [
             'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
-            'role' => Arr::first($user->getRoleNames()),
-            'permissions' => $user->getAllPermissions()->pluck('name'),
+            'role' => [$role->name => $role->title],
+            'permissions' => $permissions->pluck('title', 'name'),
         ];
     }
 
