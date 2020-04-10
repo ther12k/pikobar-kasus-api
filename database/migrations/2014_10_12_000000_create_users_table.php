@@ -19,12 +19,29 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->unsignedBigInteger('kabkota_id')->nullable();
-            $table->unsignedBigInteger('kec_id')->nullable();
-            $table->unsignedBigInteger('kel_id')->nullable();
+            $table->string('province_code')->nullable();
+            $table->string('city_code')->nullable();
+            $table->string('district_code')->nullable();
+            $table->string('village_code')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('province_code')
+                ->references('code_kemendagri')
+                ->on('areas');
+
+            $table->foreign('city_code')
+                ->references('code_kemendagri')
+                ->on('areas');
+
+            $table->foreign('district_code')
+                ->references('code_kemendagri')
+                ->on('areas');
+
+            $table->foreign('village_code')
+                ->references('code_kemendagri')
+                ->on('areas');
         });
     }
 

@@ -29,6 +29,7 @@ class UsersSeeder extends Seeder
                 'name'     => 'Operator Dinas Kesehatan Provinsi',
                 'email'    => 'dinkesprov@myapp.id',
                 'password' => bcrypt('123456'),
+                'province_code' => '32',
             ]
         );
 
@@ -40,6 +41,8 @@ class UsersSeeder extends Seeder
                 'name'     => 'Operator Dinas Kesehatan Kota Bandung',
                 'email'    => 'dinkeskotabandung@myapp.id',
                 'password' => bcrypt('123456'),
+                'province_code' => '32',
+                'city_code' => '32.73',
             ]
         );
 
@@ -51,6 +54,8 @@ class UsersSeeder extends Seeder
                 'name'     => 'Operator Dinas Kesehatan Kota Depok',
                 'email'    => 'dinkeskotadepok@myapp.id',
                 'password' => bcrypt('123456'),
+                'province_code' => '32',
+                'city_code' => '32.76',
             ]
         );
 
@@ -62,6 +67,8 @@ class UsersSeeder extends Seeder
                 'name'     => 'Operator Dinas Kesehatan Kota Bekasi',
                 'email'    => 'dinkeskotabekasi@myapp.id',
                 'password' => bcrypt('123456'),
+                'province_code' => '32',
+                'city_code' => '32.75',
             ]
         );
 

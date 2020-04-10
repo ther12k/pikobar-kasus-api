@@ -14,7 +14,10 @@ class LoginTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create();
+        $user = factory(User::class)->create();
+        $user->assignRole('administrator');
+
+        $this->user = $user;
     }
 
     /** @test */
