@@ -4,6 +4,7 @@ namespace App;
 
 use App\MedicalCase;
 use App\Notifications\VerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\ModelStatus\HasStatuses;
 use App\Notifications\ResetPassword;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -14,7 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
 {
-    use HasRoles, HasStatuses, Notifiable;
+    use SoftDeletes, HasRoles, HasStatuses, Notifiable;
 
     // Temporiraly
     const ROLE_DINKESPROV = 'dinkesprov';
