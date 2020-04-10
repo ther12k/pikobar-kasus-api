@@ -15,15 +15,13 @@ class CreateHospitalsTable extends Migration
     {
         Schema::create('hospitals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('area_id');
+            $table->unsignedBigInteger('kabkota_id')->nullable();
+            $table->unsignedBigInteger('kec_id')->nullable();
+            $table->unsignedBigInteger('kel_id')->nullable();
             $table->string('name');
-            $table->string('description');
-            $table->string('address');
-            $table->string('phone_numbers');
-
-            $table->foreign('area_id')
-            ->references('id')
-            ->on('areas');
+            $table->string('description')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone_numbers')->nullable();
         });
     }
 

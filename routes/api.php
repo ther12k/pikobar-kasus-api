@@ -58,12 +58,12 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::get('areas/hospital', 'Area\HospitalController@index');
 
     // API for Master data
-    Route::prefix('master')->group(function() {
+    Route::prefix('master')->namespace('Master')->group(function() {
         Route::get('occupations', 'OccupationController@index');
         Route::get('occupations/{occupation}', 'OccupationController@show');
 
-        //Route::get('hospitals', 'HospitalController@index');
-        //Route::get('hospitals/{hospital}', 'HospitalController@index');
+        Route::get('hospitals', 'HospitalController@index');
+        Route::get('hospitals/{hospital}', 'HospitalController@show');
         
         //Route::get('areas', 'AreaController@index');
         //Route::get('areas/{area}', 'AreaController@index');

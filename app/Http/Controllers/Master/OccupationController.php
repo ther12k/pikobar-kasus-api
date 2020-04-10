@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Master;
 
 use Illuminate\Http\Request;
 
 use App\Http\Resources\Occupation as OccupationResource;
+use App\Http\Controllers\ApiController;
 use App\Occupation;
 
 class OccupationController extends ApiController
