@@ -19,7 +19,7 @@ class MedicalCaseResource extends JsonResource
             'area_id' => $this->area_id,
             'occupation_id' => $this->occupation_id,
             'author_id' => $this->author_id,
-            'id_case' => $this->author_id,
+            'id_case' => $this->id_case,
             'id_case_national' => $this->id_case_national,
             'id_case_related'=> $this->id_case_related,
             'nik'=> $this->nik,
