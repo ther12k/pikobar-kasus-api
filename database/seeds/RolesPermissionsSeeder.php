@@ -13,7 +13,7 @@ class RolesPermissionsSeeder extends Seeder
      */
     public function run()
     {
-        $accessDashboardPermission = Permission::create(['name' => 'access-dashboard']);
+        $accessDashboardPermission = Permission::create(['name' => 'backoffice.access']);
 
         $usersListPermission = Permission::create(['name' => 'users.list']);
         $usersReadPermission = Permission::create(['name' => 'users.read']);
@@ -29,29 +29,29 @@ class RolesPermissionsSeeder extends Seeder
 
         // Administrator
         $role = Role::create(['name' => 'administrator']);
-        $role->givePermissionTo(['access-dashboard']);
+        $role->givePermissionTo(['backoffice.access']);
         $role->givePermissionTo(['users.list', 'users.read', 'users.create', 'users.edit', 'users.delete']);
         $role->givePermissionTo(['cases.list', 'cases.read', 'cases.create', 'cases.edit', 'cases.delete']);
 
         $role = Role::create(['name' => 'dinkes-provinsi-operator']);
-        $role->givePermissionTo(['access-dashboard']);
+        $role->givePermissionTo(['backoffice.access']);
         $role->givePermissionTo(['users.list', 'users.read', 'users.create', 'users.edit', 'users.delete']);
         $role->givePermissionTo(['cases.list', 'cases.read']);
 
         $role = Role::create(['name' => 'dinkes-kabkota-operator']);
-        $role->givePermissionTo(['access-dashboard']);
+        $role->givePermissionTo(['backoffice.access']);
         $role->givePermissionTo(['cases.list', 'cases.read', 'cases.create', 'cases.edit', 'cases.delete']);
 
         $role = Role::create(['name' => 'rumahsakit-operator']);
-        $role->givePermissionTo(['access-dashboard']);
+        $role->givePermissionTo(['backoffice.access']);
 
         $role = Role::create(['name' => 'puskesmas-operator']);
-        $role->givePermissionTo(['access-dashboard']);
+        $role->givePermissionTo(['backoffice.access']);
 
         $role = Role::create(['name' => 'labkes-provinsi-operator']);
-        $role->givePermissionTo(['access-dashboard']);
+        $role->givePermissionTo(['backoffice.access']);
 
         $role = Role::create(['name' => 'labkes-kabkota-operator']);
-        $role->givePermissionTo(['access-dashboard']);
+        $role->givePermissionTo(['backoffice.access']);
     }
 }
