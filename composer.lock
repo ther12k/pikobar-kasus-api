@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1b02e6e473b550b438a80fb8d47cad07",
+    "content-hash": "8755ceabc50d67f6302fffbf32e95da8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -64,12 +64,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/avdevs/keycloak.git",
-                "reference": "1b6bc0184e3b713d1ac2386cdbb09023ef55c159"
+                "reference": "c98d179877234f893dc5bdfed6763f5f7ac8391e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/avdevs/keycloak/zipball/1b6bc0184e3b713d1ac2386cdbb09023ef55c159",
-                "reference": "1b6bc0184e3b713d1ac2386cdbb09023ef55c159",
+                "url": "https://api.github.com/repos/avdevs/keycloak/zipball/c98d179877234f893dc5bdfed6763f5f7ac8391e",
+                "reference": "c98d179877234f893dc5bdfed6763f5f7ac8391e",
                 "shasum": ""
             },
             "require": {
@@ -107,7 +107,7 @@
                 "laravel",
                 "oauth2"
             ],
-            "time": "2019-11-08T11:09:08+00:00"
+            "time": "2020-04-09T09:39:22+00:00"
         },
         {
             "name": "brick/math",
@@ -1067,61 +1067,6 @@
                 "psysh"
             ],
             "time": "2020-04-07T15:01:31+00:00"
-        },
-        {
-            "name": "laravel/ui",
-            "version": "v2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/ui.git",
-                "reference": "47a0a1dac76f5e73803c86e1f38b2c7e0ae7fa83"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/ui/zipball/47a0a1dac76f5e73803c86e1f38b2c7e0ae7fa83",
-                "reference": "47a0a1dac76f5e73803c86e1f38b2c7e0ae7fa83",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/console": "^7.0",
-                "illuminate/filesystem": "^7.0",
-                "illuminate/support": "^7.0",
-                "php": "^7.2.5"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Laravel\\Ui\\UiServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laravel\\Ui\\": "src/",
-                    "Illuminate\\Foundation\\Auth\\": "auth-backend/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
-                }
-            ],
-            "description": "Laravel UI utilities and presets.",
-            "keywords": [
-                "laravel",
-                "ui"
-            ],
-            "time": "2020-03-03T20:16:46+00:00"
         },
         {
             "name": "lcobucci/jwt",
