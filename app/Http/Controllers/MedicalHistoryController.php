@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\History;
+use App\MedicalHistory;
 use Illuminate\Http\Request;
 
-class HistoryController extends ApiController
+class MedicalHistoryController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class HistoryController extends ApiController
      */
     public function index()
     {
-        $histories = History::all();
+        $medicalHistories = MedicalHistory::all();
 
-        return $this->showAll($histories);
+        return $this->showAll($medicalHistories);
     }
 
     /**
@@ -28,7 +28,7 @@ class HistoryController extends ApiController
     public function store(Request $request)
     {
         $rules = [
-            'medical_case_id' => 'required|exists:cases,id',
+            'medical_case_id' => 'required|exists:medical_cases,id',
             'hospital_id' => 'required|exists:hospitals,id',
             'status' => 'required',
             'stage' => 'required',
@@ -53,19 +53,19 @@ class HistoryController extends ApiController
         // todo default or specifed generating value
         // $data['attr'] = User::REGULAR_USER;
 
-        $history = History::create($data);
+        $medicalHistory = MedicalHistory::create($data);
 
-        return $this->showOne($history, 201);
+        return $this->showOne($medicalHistory->fresh(), 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\History  $history
+     * @param  \App\MedicalHistory  $medicalHistory
      * @return \Illuminate\Http\Response
      */
-    public function show(History $history_case)
+    public function show(MedicalHistory $medicalHistory)
     {
-        return $this->showOne($history_case);
+        return $this->showOne($medicalHistory);
     }
 }
