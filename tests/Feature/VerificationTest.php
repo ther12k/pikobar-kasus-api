@@ -68,7 +68,7 @@ class VerificationTest extends TestCase
     {
         $this->postJson('/api/email/resend', ['email' => 'foo@bar.com'])
             ->assertStatus(422)
-            ->assertJsonFragment(['errors' => ['email' => ['We can\'t find a user with that e-mail address.']]]);
+            ->assertJsonFragment(['error' => ['email' => ['We can\'t find a user with that e-mail address.']]]);
     }
 
     /** @test */
@@ -80,7 +80,7 @@ class VerificationTest extends TestCase
 
         $this->postJson('/api/email/resend', ['email' => $user->email])
             ->assertStatus(422)
-            ->assertJsonFragment(['errors' => ['email' => ['The email is already verified.']]]);
+            ->assertJsonFragment(['error' => ['email' => ['The email is already verified.']]]);
 
         Notification::assertNotSentTo($user, VerifyEmail::class);
     }
