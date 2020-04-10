@@ -15,6 +15,10 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
 {
     use HasRoles, HasStatuses, Notifiable;
 
+    // Temporiraly
+    const ROLE_DINKESPROV = 'dinkesprov';
+    const ROLE_DINKESKOTA = 'dinkeskota';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -109,4 +113,20 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     {
         return [];
     }
+
+    public function cases()
+    {
+    	return $this->hasMany(Case_::class, 'case_id', 'id');
+    }
+
+    public function isDinkesProv()
+    {
+        return $this->role == User::ROLE_DINKESPROV;
+    }
+
+    public function isDinkesKota()
+    {
+        return $this->role == User::ROLE_DINKESKOTA;
+    }
+
 }

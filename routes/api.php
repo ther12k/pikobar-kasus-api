@@ -15,9 +15,15 @@ use Illuminate\Http\Request;
 
 Route::get('/', function() {
 	return [
-		'App' => 'RESTfulAPI v0.1'
+		'App' => 'RESTfulAPI v0.2'
 	];
 });
+
+// Cases
+Route::resource('cases', 'CaseController', ['except' => ['create', 'edit']]);
+
+// Histories
+Route::resource('history_cases', 'HistoryController', ['only' => ['index', 'show', 'store']]);
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', 'Auth\LoginController@logout');
@@ -28,6 +34,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');
+
 });
 
 Route::group(['middleware' => 'guest:api'], function () {
@@ -42,4 +49,21 @@ Route::group(['middleware' => 'guest:api'], function () {
 
     Route::post('oauth/{driver}', 'Auth\OAuthController@redirectToProvider');
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');
+
+    // Areas
+    Route::get('areas/district-city', 'Area\DistrictController@index');
+
+    Route::get('areas/sub-district/{city_code}', 'Area\SubDistrictController@index');
+    Route::get('areas/sub-district-detail/{sub_district_code}', 'Area\SubDistrictController@show');
+
+    Route::get('areas/village/{district_code}', 'Area\VillageController@index');
+    Route::get('areas/village-detail/{village_code}', 'Area\VillageController@show');
+
+    Route::get('areas/hospital', 'Area\HospitalController@index');
+
+
+    // Occupations
+    Route::get('occupations', 'OccupationController@index');
+    Route::get('occupations/{occupation}', 'OccupationController@show');
+
 });
