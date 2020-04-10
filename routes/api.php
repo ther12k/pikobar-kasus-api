@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,17 +27,7 @@ Route::resource('history_cases', 'HistoryController', ['only' => ['index', 'show
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', 'Auth\LoginController@logout');
 
-    Route::get('/user', function (Request $request) {
-        $user = $request->user();
-
-        return [
-          'id' => $user->id,
-          'name' => $user->name,
-          'role' => Arr::first($user->getRoleNames()),
-          'permissions' => $user->getAllPermissions()->pluck('name'),
-        ];
-    });
-
+    Route::get('/user', 'Settings\ProfileController@index');
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');
 
