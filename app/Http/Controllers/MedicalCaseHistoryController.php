@@ -6,19 +6,30 @@ use App\MedicalCaseHistory;
 use Illuminate\Http\Request;
 use App\Http\Resources\MedicalCaseHistoryResource;
 use App\Http\Resources\MedicalCaseHistoryCollection;
+use App\MedicalCase;
 
 class MedicalCaseHistoryController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(MedicalCase $medicalCase)
+    {
+        $medicalCaseHistories = $medicalCase->medicalCaseHistories;
+
+        return new MedicalCaseHistoryCollection($medicalCaseHistories);
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MedicalCase $medicalCase, Request $request)
     {
         $rules = [
-            'medical_case_id' => 'required|exists:medical_cases,id',
             'hospital_id' => 'required|exists:hospitals,id',
             'status' => 'required',
             'stage' => 'required',
@@ -39,9 +50,7 @@ class MedicalCaseHistoryController extends Controller
         $request->validate($rules);
 
         $data = $request->all();
-
-        // todo default or specifed generating value
-        // $data['attr'] = User::REGULAR_USER;
+        $data['medical_case_id'] = $medicalCase->id;
 
         $medicalCaseHistory = MedicalCaseHistory::create($data);
 
@@ -54,8 +63,8 @@ class MedicalCaseHistoryController extends Controller
      * @param  \App\MedicalCaseHistory  $medicalCaseHistory
      * @return \Illuminate\Http\Response
      */
-    public function show(MedicalCaseHistory $medicalCaseHistory)
+    public function show(MedicalCase $medicalCase, MedicalCaseHistory $history)
     {
-        return new MedicalCaseHistoryResource($medicalCaseHistory);
+        return new MedicalCaseHistoryResource($history);
     }
 }

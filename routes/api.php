@@ -22,7 +22,7 @@ Route::get('/', function() {
 Route::resource('medical-cases', 'MedicalCaseController', ['except' => ['create', 'edit']]);
 
 // Medical Histories
-Route::resource('medical-case-histories', 'MedicalCaseHistoryController', ['only' => ['index', 'show', 'store']]);
+Route::resource('medical-cases.histories', 'MedicalCaseHistoryController', ['only' => ['index', 'show', 'store']]);
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', 'Auth\LoginController@logout');
@@ -55,15 +55,15 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::get('areas/village/{district_code}', 'Area\VillageController@index');
     Route::get('areas/village-detail/{village_code}', 'Area\VillageController@show');
 
-    Route::get('areas/hospital', 'Area\HospitalController@index');
+    // Route::get('areas/hospital', 'Area\HospitalController@index');
 
     // API for Master data
     Route::prefix('master')->namespace('Master')->group(function() {
         Route::get('occupations', 'OccupationController@index');
         Route::get('occupations/{occupation}', 'OccupationController@show');
 
-        Route::get('hospitals', 'HospitalController@index');
-        Route::get('hospitals/{hospital}', 'HospitalController@show');
+        // Route::get('hospitals', 'HospitalController@index');
+        // Route::get('hospitals/{hospital}', 'HospitalController@show');
         
         //Route::get('areas', 'AreaController@index');
         //Route::get('areas/{area}', 'AreaController@index');
