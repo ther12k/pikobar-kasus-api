@@ -41,5 +41,17 @@ class RolesPermissionsSeeder extends Seeder
         $role = Role::create(['name' => 'dinkes-kabkota-operator']);
         $role->givePermissionTo(['access-dashboard']);
         $role->givePermissionTo(['cases.list', 'cases.read', 'cases.create', 'cases.edit', 'cases.delete']);
+
+        $role = Role::create(['name' => 'rumahsakit-operator']);
+        $role->givePermissionTo(['access-dashboard']);
+
+        $role = Role::create(['name' => 'puskesmas-operator']);
+        $role->givePermissionTo(['access-dashboard']);
+
+        $role = Role::create(['name' => 'labkes-provinsi-operator']);
+        $role->givePermissionTo(['access-dashboard']);
+
+        $role = Role::create(['name' => 'labkes-kabkota-operator']);
+        $role->givePermissionTo(['access-dashboard']);
     }
 }
