@@ -2,23 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\MedicalHistory;
+use App\MedicalCaseHistory;
 use Illuminate\Http\Request;
+use App\Http\Resources\MedicalCaseHistoryResource;
+use App\Http\Resources\MedicalCaseHistoryCollection;
 
-class MedicalHistoryController extends ApiController
+class MedicalCaseHistoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $medicalHistories = MedicalHistory::all();
-
-        return $this->showAll($medicalHistories);
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -53,19 +43,19 @@ class MedicalHistoryController extends ApiController
         // todo default or specifed generating value
         // $data['attr'] = User::REGULAR_USER;
 
-        $medicalHistory = MedicalHistory::create($data);
+        $medicalCaseHistory = MedicalCaseHistory::create($data);
 
-        return $this->showOne($medicalHistory->fresh(), 201);
+        return response(new MedicalCaseHistoryResource($medicalCaseHistory->fresh()), 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\MedicalHistory  $medicalHistory
+     * @param  \App\MedicalCaseHistory  $medicalCaseHistory
      * @return \Illuminate\Http\Response
      */
-    public function show(MedicalHistory $medicalHistory)
+    public function show(MedicalCaseHistory $medicalCaseHistory)
     {
-        return $this->showOne($medicalHistory);
+        return new MedicalCaseHistoryResource($medicalCaseHistory);
     }
 }

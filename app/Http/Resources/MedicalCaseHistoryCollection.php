@@ -2,10 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\MedicalHistoryResource;
+use App\Http\Resources\MedicalCaseHistoryResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class MedicalHistoryCollection extends ResourceCollection
+class MedicalCaseHistoryCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -16,7 +16,7 @@ class MedicalHistoryCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => MedicalHistoryResource::collection($this->collection)
+            'data' => MedicalCaseHistoryResource::collection($this->collection)
         ];
     }
 }

@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Area;
-use App\MedicalHistory;
+use App\MedicalCaseHistory;
 use Illuminate\Database\Eloquent\Model;
 
 class Hospital extends Model
@@ -13,8 +13,8 @@ class Hospital extends Model
         return $this->belongsTo(Area::class);
     }
 
-    public function medicalHistories()
+    public function medicalCaseHistories()
     {
-    	return $this->hasMany(MedicalHistory::class);
+    	return $this->hasMany(MedicalCaseHistory::class);
     }
 }

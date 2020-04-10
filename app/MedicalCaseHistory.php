@@ -6,7 +6,7 @@ use App\MedicalCase;
 use App\Hospital;
 use Illuminate\Database\Eloquent\Model;
 
-class MedicalHistory extends Model
+class MedicalCaseHistory extends Model
 {
     protected $fillable = [
         'medical_case_id',

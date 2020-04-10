@@ -3,7 +3,7 @@
 namespace App;
 
 use App\User;
-use App\MedicalHistory;
+use App\MedicalCaseHistory;
 use App\Occupation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -54,9 +54,9 @@ class MedicalCase extends Model
         return $this->belongsTo(User::class, 'author_id', 'id');
     }
 
-    public function medicalHistories()
+    public function medicalCaseHistories()
     {
-    	return $this->hasMany(MedicalHistory::class);
+    	return $this->hasMany(MedicalCaseHistory::class);
     }
 
 }

@@ -22,7 +22,7 @@ Route::get('/', function() {
 Route::resource('medical-cases', 'MedicalCaseController', ['except' => ['create', 'edit']]);
 
 // Medical Histories
-Route::resource('medical-histories', 'MedicalHistoryController', ['only' => ['index', 'show', 'store']]);
+Route::resource('medical-case-histories', 'MedicalCaseHistoryController', ['only' => ['index', 'show', 'store']]);
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', 'Auth\LoginController@logout');
