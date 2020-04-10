@@ -15,23 +15,23 @@ class MedicalCaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $query = MedicalCase::select();
 
-        if (request()->has('search'))
+        if ($request->has('search'))
 		{
-            $query->where('id_case', 'like', '%' . request()->search . '%')
-                ->orWhere('name', 'like', '%' . request()->search . '%');
+            $query->where('id_case', 'like', '%' . $request->search . '%')
+                ->orWhere('name', 'like', '%' . $request->search . '%');
         }
 
-        if (request()->has('sort'))
+        if ($request->has('sort'))
 		{
-            $order = request()->order == 'desc' ? 'desc' : 'asc' ;
-            $query->orderBy(request()->sort, $order);
+            $order = $request->order == 'desc' ? 'desc' : 'asc' ;
+            $query->orderBy($request->sort, $order);
         }
         
-        $medicalCases = $query->paginate(15)->appends(request()->all());
+        $medicalCases = $query->paginate(15)->appends($request->all());
 
         return new MedicalCaseCollection($medicalCases);
     }
