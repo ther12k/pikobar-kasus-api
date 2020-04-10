@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Occupation;
 use Illuminate\Http\Request;
+
+use App\Http\Resources\Occupation as OccupationResource;
+use App\Occupation;
 
 class OccupationController extends ApiController
 {
@@ -16,7 +18,7 @@ class OccupationController extends ApiController
     {
         $occupations = Occupation::all();
 
-        return $this->showAll($occupations);
+        return OccupationResource::collection($occupations);
     }
 
     /**
@@ -27,6 +29,6 @@ class OccupationController extends ApiController
      */
     public function show(Occupation $occupation)
     {
-        return $this->showOne($occupation);
+        return new OccupationResource($occupation);
     }
 }
