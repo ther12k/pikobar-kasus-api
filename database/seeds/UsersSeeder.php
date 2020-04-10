@@ -22,7 +22,7 @@ class UsersSeeder extends Seeder
         );
 
         $user->setStatus('active');
-        // $user->assignRole('administrator');
+        $user->assignRole('administrator');
 
         $user = User::create(
             [
@@ -33,6 +33,7 @@ class UsersSeeder extends Seeder
         );
 
         $user->setStatus('active');
+        $user->assignRole('dinkes-provinsi-operator');
 
         $user = User::create(
             [
@@ -43,6 +44,7 @@ class UsersSeeder extends Seeder
         );
 
         $user->setStatus('active');
+        $user->assignRole('dinkes-kabkota-operator');
 
         $user = User::create(
             [
@@ -53,5 +55,17 @@ class UsersSeeder extends Seeder
         );
 
         $user->setStatus('active');
+        $user->assignRole('dinkes-kabkota-operator');
+
+        $user = User::create(
+            [
+                'name'     => 'Operator Dinas Kesehatan Kota Bekasi',
+                'email'    => 'dinkeskotabekasi@myapp.id',
+                'password' => bcrypt('123456'),
+            ]
+        );
+
+        $user->setStatus('active');
+        $user->assignRole('dinkes-kabkota-operator');
     }
 }

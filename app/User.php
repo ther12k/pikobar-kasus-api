@@ -51,6 +51,8 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
         'photo_url',
     ];
 
+    protected $guard_name = 'api';
+
     /**
      * Get the profile photo URL attribute.
      *
