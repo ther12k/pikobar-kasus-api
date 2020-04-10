@@ -2,14 +2,14 @@
 
 namespace App;
 
-use App\Case_;
+use App\MedicalCase;
 use App\Hospital;
 use Illuminate\Database\Eloquent\Model;
 
 class History extends Model
 {
     protected $fillable = [
-        'case_id',
+        'medical_case_id',
         'hospital_id',
         'status',
         'stage',
@@ -27,9 +27,9 @@ class History extends Model
         'other_notes'
     ];
 
-    public function case()
+    public function medicalCase()
     {
-        return $this->belongsTo(Case_::class, 'case_id', 'id');
+        return $this->belongsTo(MedicalCase::class);
     }
 
     public function hospital()

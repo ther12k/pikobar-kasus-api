@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Case_;
+use App\MedicalCase;
 use App\Hospital;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,9 +13,9 @@ class Area extends Model
     	return $this->hasMany(Hospital::class);
     }
 
-    public function cases()
+    public function medicalCases()
     {
-    	return $this->hasMany(Case_::class);
+    	return $this->hasMany(MedicalCase::class);
     }
 
     public function getDinkesCode()

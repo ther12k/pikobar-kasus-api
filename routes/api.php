@@ -20,8 +20,8 @@ Route::get('/', function() {
 	];
 });
 
-// Cases
-Route::resource('cases', 'CaseController', ['except' => ['create', 'edit']]);
+// Medical Cases
+Route::resource('medical-cases', 'MedicalCaseController', ['except' => ['create', 'edit']]);
 
 // Histories
 Route::resource('history_cases', 'HistoryController', ['only' => ['index', 'show', 'store']]);

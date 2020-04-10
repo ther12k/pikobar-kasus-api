@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Area;
-use App\Case_;
+use App\MedicalCase;
 use Illuminate\Http\Request;
-use App\Http\Resources\CaseResource;
-use App\Http\Resources\CaseCollection;
+use App\Http\Resources\MedicalCaseResource;
+use App\Http\Resources\MedicalCaseCollection;
 
-class CaseController extends Controller
+class MedicalCaseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +18,9 @@ class CaseController extends Controller
     public function index()
     {
 
-        $cases = Case_::paginate(15);
+        $medicalCases = MedicalCase::paginate(15);
         
-        return new CaseCollection($cases);
+        return new MedicalCaseCollection($medicalCases);
     }
 
     /**
@@ -35,7 +35,7 @@ class CaseController extends Controller
             'area_id' => 'required|exists:areas,id',
             'occupation_id' => 'required|exists:occupations,id',
             'age' => 'required|integer',
-            'gender' => 'required|in:' . Case_::MALE_GENDER . ',' . Case_::FEMALE_GENDER,
+            'gender' => 'required|in:' . MedicalCase::MALE_GENDER . ',' . MedicalCase::FEMALE_GENDER,
             'name' => 'required',
         ];
 
@@ -44,11 +44,11 @@ class CaseController extends Controller
         $user = $request->user();
 
         // Verified Status
-        $verifiedStatus = Case_::VERIFIED_PENDING;
+        $verifiedStatus = MedicalCase::VERIFIED_PENDING;
 
         if ($user->isDinkesKota())
         {
-            $verifiedStatus = Case_::VERIFIED;
+            $verifiedStatus = MedicalCase::VERIFIED;
         }
 
         // generate id case
@@ -57,8 +57,8 @@ class CaseController extends Controller
         $idCase = "covid-";
         $idCase .= $area->getDinkesCode();
         $idCase .= substr(date("Y"), 2, 2);
-        $idCase .= str_repeat("0", (4 - strlen((string)$area->cases->count())));
-        $idCase .= $area->cases->count();
+        $idCase .= str_repeat("0", (4 - strlen((string)$area->medicalCases->count())));
+        $idCase .= $area->medicalCases->count();
 
         $data = $request->all();
 
@@ -67,20 +67,20 @@ class CaseController extends Controller
         $data['author_id'] = $user->id;
         $data['verified_status'] = $verifiedStatus;
 
-        $case = Case_::create($data);
+        $medicalCase = MedicalCase::create($data);
 
-        return response(new CaseResource($case->fresh()), 201);
+        return response(new MedicalCaseResource($medicalCase->fresh()), 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\History  $history
+     * @param  \App\MedicalCase  $medicalCase
      * @return \Illuminate\Http\Response
      */
-    public function show(Case_ $case)
+    public function show(MedicalCase $medicalCase)
     {
-        return new CaseResource($case);
+        return new MedicalCaseResource($medicalCase);
     }
 
     /**
@@ -90,19 +90,19 @@ class CaseController extends Controller
      * @param  \App\History  $history
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Case_ $case)
+    public function update(Request $request, MedicalCase $medicalCase)
     {
         $rules = [
             'area_id' => 'exists:areas,id',
             'author_id' => 'exists:users,id',
             'occupation_id' => 'exists:occupations,id',
             'age' => 'integer',
-            'gender' => 'in:' . Case_::MALE_GENDER . ',' . Case_::FEMALE_GENDER
+            'gender' => 'in:' . MedicalCase::MALE_GENDER . ',' . MedicalCase::FEMALE_GENDER
         ];
 
-        $case->fill($request->all());
+        $medicalCase->fill($request->all());
 
-        if ($case->isClean())
+        if ($medicalCase->isClean())
         {
             return $this->errorResponse(
                 'You need to specify any different value to update.',
@@ -112,21 +112,21 @@ class CaseController extends Controller
 
         $request->validate($rules);
 
-        $case->save();
+        $medicalCase->save();
 
-        return response(new CaseResource($case), 202);
+        return response(new MedicalCaseResource($medicalCase), 202);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\History  $history
+     * @param  \App\MedicalCase  $medicalCase
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Case_ $case)
+    public function destroy(MedicalCase $medicalCase)
     {
-        $case->delete();
+        $medicalCase->delete();
 
-        return response(new CaseResource($case));
+        return response(new MedicalCaseResource($medicalCase));
     }
 }

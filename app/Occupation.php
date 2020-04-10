@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\MedicalCase;
 use Illuminate\Database\Eloquent\Model;
 
 class Occupation extends Model
 {
-    public function cases()
+    public function medicalCases()
     {
-    	return $this->hasMany(Case_::class, 'case_id', 'id');
+    	return $this->hasMany(MedicalCase::class);
     }
 }

@@ -28,7 +28,7 @@ class HistoryController extends ApiController
     public function store(Request $request)
     {
         $rules = [
-            'case_id' => 'required|exists:cases,id',
+            'medical_case_id' => 'required|exists:cases,id',
             'hospital_id' => 'required|exists:hospitals,id',
             'status' => 'required',
             'stage' => 'required',

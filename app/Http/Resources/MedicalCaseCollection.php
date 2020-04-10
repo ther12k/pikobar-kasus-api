@@ -2,9 +2,10 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\MedicalCaseResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class CaseCollection extends ResourceCollection
+class MedicalCaseCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -15,10 +16,7 @@ class CaseCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => $this->collection,
-            'links' => [
-                'self' => 'link-value',
-            ],
+            'data' => MedicalCaseResource::collection($this->collection)
         ];
     }
 }

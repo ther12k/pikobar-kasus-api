@@ -8,8 +8,7 @@ use App\Occupation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-// Naming Case used by Laravel Core Model
-class Case_ extends Model
+class MedicalCase extends Model
 {
     use SoftDeletes;
 
@@ -18,8 +17,6 @@ class Case_ extends Model
 
     const VERIFIED = 'verified';
     const VERIFIED_PENDING = 'pending';
-
-    protected $table = 'cases';
 
     protected $fillable = [
         'area_id',

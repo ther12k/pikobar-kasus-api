@@ -2,14 +2,15 @@
 
 namespace App;
 
-use App\Notifications\ResetPassword;
+use App\MedicalCase;
 use App\Notifications\VerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Spatie\ModelStatus\HasStatuses;
+use App\Notifications\ResetPassword;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
 {
@@ -114,9 +115,9 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
         return [];
     }
 
-    public function cases()
+    public function medicalCases()
     {
-    	return $this->hasMany(Case_::class, 'case_id', 'id');
+    	return $this->hasMany(MedicalCase::class);
     }
 
     public function isDinkesProv()

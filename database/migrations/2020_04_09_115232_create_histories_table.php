@@ -15,7 +15,7 @@ class CreateHistoriesTable extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('case_id');
+            $table->unsignedBigInteger('medical_case_id');
             $table->unsignedBigInteger('hospital_id');
             $table->string('status')->nullable();
             $table->string('stage')->nullable();
@@ -34,9 +34,9 @@ class CreateHistoriesTable extends Migration
             $table->timestamps();
 
             
-            $table->foreign('case_id')
+            $table->foreign('medical_case_id')
                 ->references('id')
-                ->on('cases');
+                ->on('medical_cases');
 
             $table->foreign('hospital_id')
                 ->references('id')
