@@ -17,8 +17,8 @@ class ProfileController extends Controller
         $role        = $user->roles()->first();
         $permissions = $user->getAllPermissions();
 
-        $province = $user->province ? $user->province->only('code_kemendagri', 'name') : null;
-        $city     = $user->city ? $user->city->only('code_kemendagri', 'name') : null;
+        $province = $user->province ? $user->province()->select('code_kemendagri as code', 'name')->first() : null;
+        $city     = $user->city ? $user->city()->select('code_kemendagri as code', 'name')->first() : null;
 
         return [
             'id'            => $user->id,
