@@ -2,8 +2,9 @@
 
 namespace App;
 
-use App\MedicalCase;
+use App\User;
 use App\Hospital;
+use App\MedicalCase;
 use Illuminate\Database\Eloquent\Model;
 
 class Area extends Model
@@ -21,5 +22,10 @@ class Area extends Model
     public function getDinkesCode()
     {
         return substr($this->code_kemendagri, 0, 5);
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'city_code', 'code_kemendagri');
     }
 }
