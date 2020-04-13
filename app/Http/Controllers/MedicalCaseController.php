@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Area;
 use App\MedicalCase;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreMedicalCase;
 use App\Http\Resources\MedicalCaseResource;
 use App\Http\Resources\MedicalCaseCollection;
 
@@ -42,21 +43,12 @@ class MedicalCaseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMedicalCase $request)
     {
-        $rules = [
-            'area_id' => 'required|exists:areas,id',
-            'occupation_id' => 'required|exists:occupations,id',
-            'age' => 'required|integer',
-            'gender' => 'required|in:' . MedicalCase::MALE_GENDER . ',' . MedicalCase::FEMALE_GENDER,
-            'name' => 'required',
-        ];
-
-        $request->validate($rules);
+        $request->validated();
 
         $user = $request->user();
 
-        // Verified Status
         $verifiedStatus = MedicalCase::VERIFIED_PENDING;
 
         if ($user->isDinkesKota())
