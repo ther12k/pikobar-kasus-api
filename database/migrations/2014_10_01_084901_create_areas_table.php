@@ -20,6 +20,7 @@ class CreateAreasTable extends Migration
             $table->string('name')->nullable()->index();
             $table->string('code_bps')->nullable()->unique();
             $table->string('code_kemendagri')->nullable()->unique();
+            $table->string('code_dinkes')->nullable()->unique();
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
             $table->string('meta')->nullable();
