@@ -46,17 +46,6 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('oauth/{driver}', 'Auth\OAuthController@redirectToProvider');
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');
 
-    // Areas
-    Route::get('areas/district-city', 'Area\DistrictController@index');
-
-    Route::get('areas/sub-district/{city_code}', 'Area\SubDistrictController@index');
-    Route::get('areas/sub-district-detail/{sub_district_code}', 'Area\SubDistrictController@show');
-
-    Route::get('areas/village/{district_code}', 'Area\VillageController@index');
-    Route::get('areas/village-detail/{village_code}', 'Area\VillageController@show');
-
-    // Route::get('areas/hospital', 'Area\HospitalController@index');
-
     // API for Master data
     Route::prefix('master')->namespace('Master')->group(function() {
         Route::get('occupations', 'OccupationController@index');
