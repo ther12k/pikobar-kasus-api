@@ -28,4 +28,14 @@ class Area extends Model
     {
         return $this->hasMany(User::class, 'city_code', 'code_kemendagri');
     }
+
+    public function childs()
+    {
+    	return $this->hasMany(self::class, 'parent_id');
+    }
+
+    public function parent()
+    {
+    	return $this->belongsTo(self::class, 'id', 'parent_id');
+    }
 }
