@@ -9,6 +9,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Area extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'parent_id' ,
+        'depth',
+        'name' ,
+        'code_bps',
+        'code_kemendagri' ,
+    ];
+
     public function hospitals()
     {
     	return $this->hasMany(Hospital::class);
@@ -29,7 +42,7 @@ class Area extends Model
         return $this->hasMany(User::class, 'city_code', 'code_kemendagri');
     }
 
-    public function childs()
+    public function children()
     {
     	return $this->hasMany(self::class, 'parent_id');
     }

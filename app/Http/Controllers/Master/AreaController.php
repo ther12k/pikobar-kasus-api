@@ -35,7 +35,7 @@ class AreaController extends ApiController
           $areas = $areas->where('id', 1); 
         }
 
-        return AreaResource::collection($areas->first()->childs);
+        return AreaResource::collection($areas->first()->children);
     }
 
     /**

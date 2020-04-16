@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\User;
+use App\Area;
 use Tests\TestCase;
 
 class MasterDataTest extends TestCase
@@ -45,6 +45,17 @@ class MasterDataTest extends TestCase
     /** @test */
     public function area_data_endpoint()
     {
+        $area_jabar = factory(Area::class)->make([
+            'parent_id' => null,
+            'depth' => 1,
+            'name' => 'Jawa Barat',
+            'code_bps' => '32',
+            'code_kemendagri' => '32',
+        ]);
+        $area_jabar->children()->createMany(
+            factory(Area::class, 3)->make()->toArray()
+        );
+
         $this->getJson('/api/master/areas')
         ->assertSuccessful()
         ->assertJsonStructure([
