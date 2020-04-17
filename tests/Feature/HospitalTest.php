@@ -13,9 +13,6 @@ class HospitalTest extends TestCase
         "name",
         "address",
         "description",
-        "kabkota_id",
-        "kec_id",
-        "kel_id",
         "phone_numbers",
     ];
 

@@ -38,14 +38,10 @@ class AreaTest extends TestCase
             'code_bps'        => '32',
             'code_kemendagri' => '32',
         ]);
+
         $this->area_jabar->children()->createMany(
             factory(Area::class, 3)->make()->toArray()
         );
-
-        $this->hospital   = factory(Hospital::class)->create([
-            'name'       => 'RS Hasan Sadikin',
-            'kabkota_id' => $this->area_jabar->children[0]->id]);
-        $this->hospital_2 = factory(Hospital::class)->create();
     }
 
     /** @test */

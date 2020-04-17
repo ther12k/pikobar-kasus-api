@@ -10,9 +10,6 @@ $factory->define(Hospital::class, function (Faker $faker) {
         "name" => $faker->name,
         "address" => $faker->address,
         "description" => $faker->text,
-        "kabkota_id" => $faker->randomDigit,
-        "kec_id" => $faker->randomDigit,
-        "kel_id" => $faker->randomDigit,
         "phone_numbers" => $faker->phoneNumber,
     ];
 });
