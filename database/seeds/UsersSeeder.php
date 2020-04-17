@@ -18,10 +18,10 @@ class UsersSeeder extends Seeder
                 'name'     => 'Administrator',
                 'email'    => 'admin@myapp.id',
                 'password' => bcrypt('123456'),
+                'status' => 1,
             ]
         );
 
-        $user->setStatus('active');
         $user->assignRole('administrator');
 
         $user = User::create(
@@ -30,10 +30,10 @@ class UsersSeeder extends Seeder
                 'email'    => 'dinkesprov@myapp.id',
                 'password' => bcrypt('123456'),
                 'province_code' => '32',
+                'status' => 1,
             ]
         );
 
-        $user->setStatus('active');
         $user->assignRole('dinkes-provinsi-operator');
 
         $user = User::create(
@@ -43,10 +43,10 @@ class UsersSeeder extends Seeder
                 'password' => bcrypt('123456'),
                 'province_code' => '32',
                 'city_code' => '32.73',
+                'status' => 1,
             ]
         );
 
-        $user->setStatus('active');
         $user->assignRole('dinkes-kabkota-operator');
 
         $user = User::create(
@@ -56,10 +56,10 @@ class UsersSeeder extends Seeder
                 'password' => bcrypt('123456'),
                 'province_code' => '32',
                 'city_code' => '32.76',
+                'status' => 1,
             ]
         );
 
-        $user->setStatus('active');
         $user->assignRole('dinkes-kabkota-operator');
 
         $user = User::create(
@@ -69,10 +69,10 @@ class UsersSeeder extends Seeder
                 'password' => bcrypt('123456'),
                 'province_code' => '32',
                 'city_code' => '32.75',
+                'status' => 1,
             ]
         );
 
-        $user->setStatus('active');
         $user->assignRole('dinkes-kabkota-operator');
     }
 }

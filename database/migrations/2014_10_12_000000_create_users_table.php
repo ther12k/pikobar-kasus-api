@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('city_code')->nullable();
             $table->string('district_code')->nullable();
             $table->string('village_code')->nullable();
+            $table->tinyInteger('status')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
