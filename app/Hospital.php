@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hospital extends Model
 {
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
     public function area()
     {
         return $this->belongsTo(Area::class);

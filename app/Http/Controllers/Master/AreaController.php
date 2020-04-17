@@ -25,10 +25,10 @@ class AreaController extends ApiController
 
         if ($request->has('parent_id')) {
           $areas = $areas->where('id', $request->input('parent_id')); 
-        } elseif ($request->has('code_kemendagri')) {
-          $areas = $areas->where('code_kemendagri', $request->input('code_kemendagri')); 
-        } elseif ($request->has('code_bps')) {
-          $areas = $areas->where('code_bps', $request->input('code_bps')); 
+        } elseif ($request->has('parent_code_kemendagri')) {
+          $areas = $areas->where('code_kemendagri', $request->input('parent_code_kemendagri')); 
+        } elseif ($request->has('parent_code_bps')) {
+          $areas = $areas->where('code_bps', $request->input('parent_code_bps')); 
         // if no parent_id, code_kemendagri, or bps defined, default to 
         // parent_id ='1' (jawa barat)
         } else {
