@@ -15,13 +15,32 @@ class CreateHospitalsTable extends Migration
     {
         Schema::create('hospitals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('kabkota_id')->nullable();
-            $table->unsignedBigInteger('kec_id')->nullable();
-            $table->unsignedBigInteger('kel_id')->nullable();
+            $table->string('province_code')->nullable();
+            $table->string('city_code')->nullable();
+            $table->string('district_code')->nullable();
+            $table->string('village_code')->nullable();
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('address')->nullable();
             $table->string('phone_numbers')->nullable();
+            $table->tinyInteger('status')->nullable();
+            $table->timestamps();
+
+            $table->foreign('province_code')
+                ->references('code_kemendagri')
+                ->on('areas');
+
+            $table->foreign('city_code')
+                ->references('code_kemendagri')
+                ->on('areas');
+
+            $table->foreign('district_code')
+                ->references('code_kemendagri')
+                ->on('areas');
+
+            $table->foreign('village_code')
+                ->references('code_kemendagri')
+                ->on('areas');
         });
     }
 
