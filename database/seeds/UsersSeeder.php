@@ -18,7 +18,7 @@ class UsersSeeder extends Seeder
                 'name'     => 'Administrator',
                 'email'    => 'admin@myapp.id',
                 'password' => bcrypt('123456'),
-                'status' => 1,
+                'status'   => 1,
             ]
         );
 
@@ -26,11 +26,11 @@ class UsersSeeder extends Seeder
 
         $user = User::create(
             [
-                'name'     => 'Operator Dinas Kesehatan Provinsi',
-                'email'    => 'dinkesprov@myapp.id',
-                'password' => bcrypt('123456'),
+                'name'          => 'Operator Dinas Kesehatan Provinsi',
+                'email'         => 'dinkesprov@myapp.id',
+                'password'      => bcrypt('123456'),
                 'province_code' => '32',
-                'status' => 1,
+                'status'        => 1,
             ]
         );
 
@@ -38,12 +38,12 @@ class UsersSeeder extends Seeder
 
         $user = User::create(
             [
-                'name'     => 'Operator Dinas Kesehatan Kota Bandung',
-                'email'    => 'dinkeskotabandung@myapp.id',
-                'password' => bcrypt('123456'),
+                'name'          => 'Operator Dinas Kesehatan Kota Bandung',
+                'email'         => 'dinkeskotabandung@myapp.id',
+                'password'      => bcrypt('123456'),
                 'province_code' => '32',
-                'city_code' => '32.73',
-                'status' => 1,
+                'city_code'     => '32.73',
+                'status'        => 1,
             ]
         );
 
@@ -51,12 +51,12 @@ class UsersSeeder extends Seeder
 
         $user = User::create(
             [
-                'name'     => 'Operator Dinas Kesehatan Kota Depok',
-                'email'    => 'dinkeskotadepok@myapp.id',
-                'password' => bcrypt('123456'),
+                'name'          => 'Operator Dinas Kesehatan Kota Depok',
+                'email'         => 'dinkeskotadepok@myapp.id',
+                'password'      => bcrypt('123456'),
                 'province_code' => '32',
-                'city_code' => '32.76',
-                'status' => 1,
+                'city_code'     => '32.76',
+                'status'        => 1,
             ]
         );
 
@@ -64,12 +64,12 @@ class UsersSeeder extends Seeder
 
         $user = User::create(
             [
-                'name'     => 'Operator Dinas Kesehatan Kota Bekasi',
-                'email'    => 'dinkeskotabekasi@myapp.id',
-                'password' => bcrypt('123456'),
+                'name'          => 'Operator Dinas Kesehatan Kota Bekasi',
+                'email'         => 'dinkeskotabekasi@myapp.id',
+                'password'      => bcrypt('123456'),
                 'province_code' => '32',
-                'city_code' => '32.75',
-                'status' => 1,
+                'city_code'     => '32.75',
+                'status'        => 1,
             ]
         );
 
