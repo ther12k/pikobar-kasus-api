@@ -2,22 +2,20 @@
 
 namespace App;
 
-use App\Notifications\VerifyEmail;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Notifications\ResetPassword;
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\VerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
 {
     use SoftDeletes, HasRoles, Notifiable;
-
-    // Temporiraly
-    const ROLE_DINKESPROV = 'dinkesprov';
-    const ROLE_DINKESKOTA = 'dinkeskota';
 
     /**
      * The attributes that are mass assignable.
@@ -70,7 +68,7 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     /**
      * Get the oauth providers.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function oauthProviders()
     {
@@ -136,17 +134,6 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
 
     public function medicalCases()
     {
-    	return $this->hasMany(MedicalCase::class);
+        return $this->hasMany(MedicalCase::class);
     }
-
-    public function isDinkesProv()
-    {
-        return $this->role == User::ROLE_DINKESPROV;
-    }
-
-    public function isDinkesKota()
-    {
-        return $this->role == User::ROLE_DINKESKOTA;
-    }
-
 }

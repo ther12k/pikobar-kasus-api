@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\MedicalCase;
-use App\Hospital;
 use Illuminate\Database\Eloquent\Model;
 
 class MedicalCaseHistory extends Model
@@ -24,7 +22,7 @@ class MedicalCaseHistory extends Model
         'is_sample_taken',
         'report_source',
         'first_symptom_date',
-        'other_notes'
+        'other_notes',
     ];
 
     public function medicalCase()

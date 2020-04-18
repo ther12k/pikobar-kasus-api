@@ -35,6 +35,6 @@ class Hospital extends Model
 
     public function medicalCaseHistories()
     {
-    	return $this->hasMany(MedicalCaseHistory::class);
+        return $this->hasMany(MedicalCaseHistory::class);
     }
 }

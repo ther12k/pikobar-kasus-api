@@ -12,11 +12,11 @@ class Area extends Model
      * @var array
      */
     protected $fillable = [
-        'parent_id' ,
+        'parent_id',
         'depth',
-        'name' ,
+        'name',
         'code_bps',
-        'code_kemendagri' ,
+        'code_kemendagri',
     ];
 
     public function children()
@@ -34,18 +34,6 @@ class Area extends Model
         $foreignKey = $this->buildForeignKey();
 
         return $this->hasMany(Hospital::class, $foreignKey, 'code_kemendagri');
-    }
-
-    public function users()
-    {
-        $foreignKey = $this->buildForeignKey();
-
-        return $this->hasMany(User::class, $foreignKey, 'code_kemendagri');
-    }
-
-    public function medicalCases()
-    {
-        return $this->hasMany(MedicalCase::class);
     }
 
     /**
@@ -71,5 +59,17 @@ class Area extends Model
         }
 
         return $foreignKey = 'village_code';
+    }
+
+    public function users()
+    {
+        $foreignKey = $this->buildForeignKey();
+
+        return $this->hasMany(User::class, $foreignKey, 'code_kemendagri');
+    }
+
+    public function medicalCases()
+    {
+        return $this->hasMany(MedicalCase::class);
     }
 }

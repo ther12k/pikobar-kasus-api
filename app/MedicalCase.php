@@ -2,9 +2,6 @@
 
 namespace App;
 
-use App\User;
-use App\MedicalCaseHistory;
-use App\Occupation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -36,7 +33,7 @@ class MedicalCase extends Model
         'nationality',
         'nationality_name',
         'verified_status',
-        'verified_comment'
+        'verified_comment',
     ];
 
     public function area()
@@ -56,7 +53,7 @@ class MedicalCase extends Model
 
     public function medicalCaseHistories()
     {
-    	return $this->hasMany(MedicalCaseHistory::class);
+        return $this->hasMany(MedicalCaseHistory::class);
     }
 
 }
