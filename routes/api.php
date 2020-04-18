@@ -53,7 +53,7 @@ Route::group(['middleware' => 'guest:api'], function () {
 
         Route::get('hospitals', 'HospitalController@index');
         Route::get('hospitals/{hospital}', 'HospitalController@show');
-        
+
         Route::get('areas', 'AreaController@index');
         Route::get('areas/{area}', 'AreaController@show');
     });

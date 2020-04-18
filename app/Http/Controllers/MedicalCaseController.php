@@ -17,6 +17,8 @@ class MedicalCaseController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('viewAny', MedicalCase::class);
+
         $query = MedicalCase::select();
 
         if ($request->has('search')) {
