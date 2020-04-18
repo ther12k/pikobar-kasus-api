@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Area;
+use App\Http\Requests\StoreMedicalCase;
+use App\Http\Resources\MedicalCaseCollection;
+use App\Http\Resources\MedicalCaseResource;
 use App\MedicalCase;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreMedicalCase;
-use App\Http\Resources\MedicalCaseResource;
-use App\Http\Resources\MedicalCaseCollection;
 
 class MedicalCaseController extends Controller
 {
@@ -20,18 +20,16 @@ class MedicalCaseController extends Controller
     {
         $query = MedicalCase::select();
 
-        if ($request->has('search'))
-		{
-            $query->where('id_case', 'like', '%' . $request->search . '%')
-                ->orWhere('name', 'like', '%' . $request->search . '%');
+        if ($request->has('search')) {
+            $query->where('id_case', 'like', '%'.$request->search.'%')
+                ->orWhere('name', 'like', '%'.$request->search.'%');
         }
 
-        if ($request->has('sort'))
-		{
-            $order = $request->order == 'desc' ? 'desc' : 'asc' ;
+        if ($request->has('sort')) {
+            $order = $request->order == 'desc' ? 'desc' : 'asc';
             $query->orderBy($request->sort, $order);
         }
-        
+
         $medicalCases = $query->paginate(15)->appends($request->all());
 
         return new MedicalCaseCollection($medicalCases);
@@ -51,8 +49,7 @@ class MedicalCaseController extends Controller
 
         $verifiedStatus = MedicalCase::VERIFIED_PENDING;
 
-        if ($user->isDinkesKota())
-        {
+        if ($user->isDinkesKota()) {
             $verifiedStatus = MedicalCase::VERIFIED;
         }
 
@@ -62,14 +59,14 @@ class MedicalCaseController extends Controller
         $idCase = "covid-";
         $idCase .= $area->getDinkesCode();
         $idCase .= substr(date("Y"), 2, 2);
-        $idCase .= str_repeat("0", (4 - strlen((string)$area->medicalCases->count())));
+        $idCase .= str_repeat("0", (4 - strlen((string) $area->medicalCases->count())));
         $idCase .= $area->medicalCases->count();
 
         $data = $request->all();
 
         // assign into payload
-        $data['id_case'] = $idCase;
-        $data['author_id'] = $user->id;
+        $data['id_case']         = $idCase;
+        $data['author_id']       = $user->id;
         $data['verified_status'] = $verifiedStatus;
 
         $medicalCase = MedicalCase::create($data);
@@ -98,17 +95,16 @@ class MedicalCaseController extends Controller
     public function update(Request $request, MedicalCase $medicalCase)
     {
         $rules = [
-            'area_id' => 'exists:areas,id',
-            'author_id' => 'exists:users,id',
+            'area_id'       => 'exists:areas,id',
+            'author_id'     => 'exists:users,id',
             'occupation_id' => 'exists:occupations,id',
-            'age' => 'integer',
-            'gender' => 'in:' . MedicalCase::MALE_GENDER . ',' . MedicalCase::FEMALE_GENDER
+            'age'           => 'integer',
+            'gender'        => 'in:'.MedicalCase::MALE_GENDER.','.MedicalCase::FEMALE_GENDER,
         ];
 
         $medicalCase->fill($request->all());
 
-        if ($medicalCase->isClean())
-        {
+        if ($medicalCase->isClean()) {
             return $this->errorResponse(
                 'You need to specify any different value to update.',
                 422

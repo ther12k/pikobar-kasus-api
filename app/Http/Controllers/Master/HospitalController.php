@@ -22,7 +22,9 @@ class HospitalController extends ApiController
             $hospitals = $hospitals->where('name','LIKE','%'.$request->input('search').'%');
         }
 
-        return HostpitalResource::collection($hospitals->get());
+        $records = $hospitals->get();
+
+        return HostpitalResource::collection($records);
     }
 
     /**
