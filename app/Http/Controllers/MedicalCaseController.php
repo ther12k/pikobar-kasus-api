@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Area;
 use App\Http\Requests\StoreMedicalCase;
-use App\Http\Resources\MedicalCaseCollection;
 use App\Http\Resources\MedicalCaseResource;
 use App\MedicalCase;
 use Illuminate\Http\Request;
@@ -30,9 +29,9 @@ class MedicalCaseController extends Controller
             $query->orderBy($request->sort, $order);
         }
 
-        $medicalCases = $query->paginate(15)->appends($request->all());
+        $medicalCases = $query->paginate(15);
 
-        return new MedicalCaseCollection($medicalCases);
+        return MedicalCaseResource::collection($medicalCases);
     }
 
     /**
@@ -71,7 +70,7 @@ class MedicalCaseController extends Controller
 
         $medicalCase = MedicalCase::create($data);
 
-        return response(new MedicalCaseResource($medicalCase->fresh()), 201);
+        return new MedicalCaseResource($medicalCase->fresh());
     }
 
     /**
@@ -115,7 +114,7 @@ class MedicalCaseController extends Controller
 
         $medicalCase->save();
 
-        return response(new MedicalCaseResource($medicalCase), 202);
+        return new MedicalCaseResource($medicalCase);
     }
 
     /**
@@ -128,6 +127,6 @@ class MedicalCaseController extends Controller
     {
         $medicalCase->delete();
 
-        return response(new MedicalCaseResource($medicalCase));
+        return response()->json(null);
     }
 }

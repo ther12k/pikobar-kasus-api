@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\MedicalCaseHistoryCollection;
 use App\Http\Resources\MedicalCaseHistoryResource;
 use App\MedicalCase;
 use App\MedicalCaseHistory;
@@ -19,7 +18,7 @@ class MedicalCaseHistoryController extends Controller
     {
         $medicalCaseHistories = $medicalCase->medicalCaseHistories;
 
-        return new MedicalCaseHistoryCollection($medicalCaseHistories);
+        return MedicalCaseHistory::collection($medicalCaseHistories);
     }
 
     /**
