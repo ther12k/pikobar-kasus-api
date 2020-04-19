@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,10 @@ Route::get('/', function() {
 });
 
 // Medical Cases
-Route::resource('medical-cases', 'MedicalCaseController', ['except' => ['create', 'edit']]);
+Route::apiResource('medical-cases', 'MedicalCaseController', ['except' => ['create', 'edit']]);
 
 // Medical Histories
-Route::resource('medical-cases.histories', 'MedicalCaseHistoryController', ['only' => ['index', 'show', 'store']]);
+Route::apiResource('medical-cases.histories', 'MedicalCaseHistoryController', ['only' => ['index', 'show', 'store']]);
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', 'Auth\LoginController@logout');

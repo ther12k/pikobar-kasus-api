@@ -11,14 +11,20 @@ use Illuminate\Http\Request;
 class MedicalCaseController extends Controller
 {
     /**
+     * MedicalCaseController constructor.
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(MedicalCase::class, 'medical-case');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        $this->authorize('viewAny', MedicalCase::class);
-
         $query = MedicalCase::select();
 
         if ($request->has('search')) {
