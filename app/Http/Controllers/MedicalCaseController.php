@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Area;
-use App\Http\Requests\StoreMedicalCase;
+use App\Http\Requests\MedicalCaseStoreRequest;
 use App\Http\Resources\MedicalCaseResource;
 use App\MedicalCase;
 use Illuminate\Http\Request;
@@ -48,7 +48,7 @@ class MedicalCaseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMedicalCase $request)
+    public function store(MedicalCaseStoreRequest $request)
     {
         $request->validated();
 

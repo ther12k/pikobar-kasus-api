@@ -15,7 +15,7 @@ class MedicalCaseTest extends TestCase
     }
 
     /** @test */
-    public function can_list()
+    public function cannot_list_without_permission()
     {
         /**
          * @var \App\User $user
@@ -25,11 +25,33 @@ class MedicalCaseTest extends TestCase
         $this->actingAs($user)
             ->getJson("/api/medical-cases")
             ->assertForbidden();
+    }
+
+    /** @test */
+    public function can_list()
+    {
+        /**
+         * @var \App\User $user
+         */
+        $user = factory(User::class)->create();
 
         $user->givePermissionTo('cases.list');
 
         $this->actingAs($user)
             ->getJson("/api/medical-cases")
             ->assertSuccessful();
+    }
+
+    /** @test */
+    public function cannot_create_without_permission()
+    {
+        /**
+         * @var \App\User $user
+         */
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)
+            ->postJson("/api/medical-cases", [])
+            ->assertForbidden();
     }
 }

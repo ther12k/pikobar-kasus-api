@@ -6,7 +6,7 @@ use App\MedicalCase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMedicalCase extends FormRequest
+class MedicalCaseStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
