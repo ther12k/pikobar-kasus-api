@@ -31,10 +31,8 @@ class CreateMedicalCasesTable extends Migration
             $table->string('phone_number')->nullable();
             $table->string('nationality')->nullable();
             $table->string('nationality_name')->nullable();
-            $table->softDeletes();
             $table->string('verified_status')->nullable();
             $table->string('verified_comment', 2000)->nullable();
-            
 
             $table->foreign('area_id')
                 ->references('id')
@@ -48,6 +46,7 @@ class CreateMedicalCasesTable extends Migration
                 ->references('id')
                 ->on('users');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

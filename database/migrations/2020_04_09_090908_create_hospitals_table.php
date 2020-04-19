@@ -24,6 +24,7 @@ class CreateHospitalsTable extends Migration
             $table->string('address')->nullable();
             $table->string('phone_numbers')->nullable();
             $table->tinyInteger('status')->nullable();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('province_code')

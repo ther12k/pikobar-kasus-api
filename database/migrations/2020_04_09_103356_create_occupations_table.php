@@ -17,6 +17,7 @@ class CreateOccupationsTable extends Migration
             $table->id();
             $table->string('title');
             $table->tinyInteger('sequence');
+            $table->softDeletes();
         });
     }
 
