@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Entities\Concerns\HasArea;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MedicalCase extends Model
 {
-    use SoftDeletes;
+    use HasArea, SoftDeletes;
 
     const MALE_GENDER = 'PRIA';
     const FEMALE_GENDER = 'WANITA';
@@ -35,11 +36,6 @@ class MedicalCase extends Model
         'verified_status',
         'verified_comment',
     ];
-
-    public function area()
-    {
-        return $this->belongsTo(Area::class);
-    }
 
     public function occupation()
     {

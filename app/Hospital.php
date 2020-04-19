@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Entities\Concerns\HasArea;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Hospital extends Model
 {
-    use SoftDeletes;
+    use HasArea, SoftDeletes;
 
     /**
      * Indicates if the model should be timestamped.
@@ -15,26 +16,6 @@ class Hospital extends Model
      * @var bool
      */
     public $timestamps = false;
-
-    public function province()
-    {
-        return $this->belongsTo(Area::class, 'province_code', 'code_kemendagri');
-    }
-
-    public function city()
-    {
-        return $this->belongsTo(Area::class, 'city_code', 'code_kemendagri');
-    }
-
-    public function district()
-    {
-        return $this->belongsTo(Area::class, 'district_code', 'code_kemendagri');
-    }
-
-    public function village()
-    {
-        return $this->belongsTo(Area::class, 'village_code', 'code_kemendagri');
-    }
 
     public function medicalCaseHistories()
     {

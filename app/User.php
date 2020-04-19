@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Entities\Concerns\HasArea;
 use App\Notifications\ResetPassword;
 use App\Notifications\VerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,7 +16,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
 {
-    use SoftDeletes, HasRoles, Notifiable;
+    use SoftDeletes, HasRoles, HasArea, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -110,26 +111,6 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     public function getJWTCustomClaims()
     {
         return [];
-    }
-
-    public function province()
-    {
-        return $this->belongsTo(Area::class, 'province_code', 'code_kemendagri');
-    }
-
-    public function city()
-    {
-        return $this->belongsTo(Area::class, 'city_code', 'code_kemendagri');
-    }
-
-    public function district()
-    {
-        return $this->belongsTo(Area::class, 'district_code', 'code_kemendagri');
-    }
-
-    public function village()
-    {
-        return $this->belongsTo(Area::class, 'village_code', 'code_kemendagri');
     }
 
     public function medicalCases()
