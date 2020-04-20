@@ -74,5 +74,71 @@ class UsersSeeder extends Seeder
         );
 
         $user->assignRole('dinkes-kabkota-operator');
+
+        $user = User::create(
+            [
+                'name'          => 'Operator Rumah Sakit Hasan Sadikin',
+                'email'         => 'rshs@myapp.id',
+                'password'      => bcrypt('123456'),
+                'status'        => 1,
+            ]
+        );
+
+        $user->assignRole('rumahsakit-operator');
+
+        $user = User::create(
+            [
+                'name'          => 'Operator Rumah Sakit Umum Daerah Al Ihsan Provinsi Jawa Barat',
+                'email'         => 'rsalihsan@myapp.id',
+                'password'      => bcrypt('123456'),
+                'status'        => 1,
+            ]
+        );
+
+        $user->assignRole('rumahsakit-operator');
+
+        $user = User::create(
+            [
+                'name'          => 'Operator Puskesmas 1',
+                'email'         => 'puskesmas1@myapp.id',
+                'password'      => bcrypt('123456'),
+                'status'        => 1,
+            ]
+        );
+
+        $user->assignRole('puskesmas-operator');
+
+        $user = User::create(
+            [
+                'name'          => 'Operator Puskesmas 2',
+                'email'         => 'puskesmas2@myapp.id',
+                'password'      => bcrypt('123456'),
+                'status'        => 1,
+            ]
+        );
+
+        $user->assignRole('puskesmas-operator');
+
+        $user = User::create(
+            [
+                'name'          => 'Operator Puskesmas 3',
+                'email'         => 'puskesmas3@myapp.id',
+                'password'      => bcrypt('123456'),
+                'status'        => 1,
+            ]
+        );
+
+        $user->assignRole('puskesmas-operator');
+
+        $user = User::create(
+            [
+                'name'          => 'Operator Puskesmas 4',
+                'email'         => 'puskesmas4@myapp.id',
+                'password'      => bcrypt('123456'),
+                'status'        => 1,
+            ]
+        );
+
+        $user->assignRole('puskesmas-operator');
     }
 }
