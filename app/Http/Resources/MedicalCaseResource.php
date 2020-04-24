@@ -31,7 +31,7 @@ class MedicalCaseResource extends JsonResource
             'office_address'=> $this->office_address,
             'phone_number'=> $this->phone_number,
             'nationality'=> $this->nationality,
-            'nationality_name'=> $this->nationality_name,
+            'nationality_country_id'=> $this->nationality_country_id,
             'verified_status'=> $this->verified_status,
             'verified_comment'=> $this->verified_status,
             'created_at' => $this->created_at,

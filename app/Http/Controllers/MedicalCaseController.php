@@ -56,18 +56,30 @@ class MedicalCaseController extends Controller
 
         $verifiedStatus = MedicalCase::VERIFIED_PENDING;
 
-        if ($user->isDinkesKota()) {
+        if ($user->can('cases.create')) {
             $verifiedStatus = MedicalCase::VERIFIED;
         }
 
         // generate id case
-        $area = Area::find($request->area_id);
+        $area = Area::where('code_kemendagri', $request->city_code)->first();
+
+        $last_case = $area->medicalCases()
+                          ->orderBy('created_at', 'desc')
+                          ->first();
+
+        if (empty($last_case)) {
+            $last_case_id = "1";
+        } else {
+            $last_case_id = (integer)substr($last_case->id_case, 12);
+            $last_case_id++;
+            $last_case_id = (string) $last_case_id;
+        }
 
         $idCase = "covid-";
-        $idCase .= $area->getDinkesCode();
+        $idCase .= $area->code_dinkes;
         $idCase .= substr(date("Y"), 2, 2);
-        $idCase .= str_repeat("0", (4 - strlen((string) $area->medicalCases->count())));
-        $idCase .= $area->medicalCases->count();
+        $idCase .= str_repeat("0", (4 - strlen($last_case_id)));
+        $idCase .= $last_case_id;
 
         $data = $request->all();
 

@@ -16,10 +16,10 @@ class MedicalCase extends Model
     const VERIFIED = 'verified';
     const VERIFIED_PENDING = 'pending';
 
+    const WNI = 1;
+    const WNA = 2;
+
     protected $fillable = [
-        'area_id',
-        'occupation_id',
-        'author_id',
         'id_case',
         'id_case_national',
         'id_case_related',
@@ -28,13 +28,28 @@ class MedicalCase extends Model
         'birth_date',
         'age',
         'gender',
-        'address',
-        'office_address',
         'phone_number',
+        'address',
+        'province_code',
+        'city_code',
+        'district_code',
+        'village_code',
+        'office_addres',
+        'occupation_id',
         'nationality',
-        'nationality_name',
+        'nationality_country_id',
         'verified_status',
         'verified_comment',
+        'author_id',
+    ];
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'nationality_country_id' => 102, //Indonesia
     ];
 
     public function occupation()

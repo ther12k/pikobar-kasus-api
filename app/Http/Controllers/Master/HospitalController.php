@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Master;
 
 use App\Hospital;
 use App\Http\Controllers\ApiController;
-use App\Http\Resources\Hospital as HostpitalResource;
+use App\Http\Resources\Hospital as HospitalResource;
 use Illuminate\Http\Request;
 
 class HospitalController extends ApiController
@@ -24,7 +24,7 @@ class HospitalController extends ApiController
 
         $records = $hospitals->get();
 
-        return HostpitalResource::collection($records);
+        return HospitalResource::collection($records);
     }
 
     /**
@@ -34,6 +34,6 @@ class HospitalController extends ApiController
      */
     public function show(Hospital $hospital)
     {
-        return new HostpitalResource($hospital);
+        return new HospitalResource($hospital);
     }
 }

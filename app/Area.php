@@ -70,6 +70,8 @@ class Area extends Model
 
     public function medicalCases()
     {
-        return $this->hasMany(MedicalCase::class);
+        $foreignKey = $this->buildForeignKey();
+
+        return $this->hasMany(MedicalCase::class, $foreignKey, 'code_kemendagri');
     }
 }
