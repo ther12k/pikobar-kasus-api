@@ -16,6 +16,7 @@ class CreateRdtApplicantsTable extends Migration
         Schema::create('rdt_applicants', function (Blueprint $table) {
             $table->id();
             $table->string('registration_code', 10)->unique();
+            $table->unsignedBigInteger('rdt_event_id')->nullable();
             $table->string('nik', 20)->index();
             $table->string('name')->index();
             $table->string('address')->nullable();
@@ -26,6 +27,10 @@ class CreateRdtApplicantsTable extends Migration
             $table->tinyInteger('status')->nullable();
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('rdt_event_id')
+                ->references('id')
+                ->on('rdt_events');
 
             $table->foreign('province_code')
                 ->references('code_kemendagri')
