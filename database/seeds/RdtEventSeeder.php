@@ -1,5 +1,6 @@
 <?php
 
+use App\RdtEvent;
 use Illuminate\Database\Seeder;
 
 class RdtEventSeeder extends Seeder
@@ -11,6 +12,6 @@ class RdtEventSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(RdtEvent::class, 20)->create();
     }
 }

@@ -19,6 +19,9 @@ Route::get('/', function() {
 	];
 });
 
+// RDT Registration
+Route::post('rdt/register', 'Rdt\RdtRegisterController');
+
 // Medical Cases
 Route::apiResource('medical-cases', 'MedicalCaseController', ['except' => ['create', 'edit']]);
 
