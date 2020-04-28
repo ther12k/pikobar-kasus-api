@@ -14,6 +14,22 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+/*
+ * @property bigIncrements	$id
+ * @property string	        $name
+ * @property string	        $email              unique
+ * @property timestamp	    $email_verified_at	nullable
+ * @property string	        $password	          nullable
+ * @property string	        $province_code	    nullable
+ * @property string	        $city_code	        nullable
+ * @property string	        $district_code	    nullable
+ * @property string	        $village_code	      nullable
+ * @property tinyInteger	  $status	            nullable
+ * @property string         $remember_token     Used for 'Remember Me' feature
+ * @property timestamp      $created_at
+ * @property timestamp      $updated_at
+ * @property timestamp      $deleted_at         Used for soft delete feature
+ */
 class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
 {
     use SoftDeletes, HasRoles, HasArea, Notifiable;

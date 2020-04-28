@@ -2,15 +2,16 @@
 
 namespace App;
 
+use App\Area;
 use App\Entities\Concerns\HasArea;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /*
  * @property                    $id
- * @property string	            $id_case	        nullable
- * @property string	            $id_case_national	nullable
- * @property string	            $id_case_related	nullable
+ * @property string	            $case_code	        nullable
+ * @property string	            $national_case_code	nullable
+ * @property string	            $related_case_code	nullable
  * @property string	            $nik	            unique,nullable
  * @property string	            $name
  * @property date	              $birth_date	      nullable
@@ -24,7 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string	            $district_code	  nullable
  * @property string	            $village_code	    nullable
  * @property string	            $office_address	  nullable
- * @property unsignedBigInteger	$occupation_id');
+ * @property unsignedBigInteger	$occupation_id
 
  * @property tinyInteger	      $nationality	    nullable
  * @property unsignedBigInteger	$nationality_country_id
@@ -34,7 +35,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property unsignedBigInteger	$author_id
  * @property timestamp          $created_at
  * @property timestamp          $updated_at
- * @property timestamp          $deleted_at
+ * @property timestamp          $deleted_at       Used for softdelete function
  */
 class MedicalCase extends Model
 {
@@ -50,9 +51,9 @@ class MedicalCase extends Model
     const WNA = 2;
 
     protected $fillable = [
-        'id_case',
-        'id_case_national',
-        'id_case_related',
+        'case_code',
+        'national_case_code',
+        'related_case_code',
         'nik',
         'name',
         'birth_date',
@@ -95,6 +96,36 @@ class MedicalCase extends Model
     public function medicalCaseHistories()
     {
         return $this->hasMany(MedicalCaseHistory::class);
+    }
+
+    /*
+     * Generate next case_code for a given city code
+     *
+     * @return string the next case code
+     */
+    static function generateNextCaseCode($kemendagri_code)
+    {
+        $area = Area::where('code_kemendagri', $kemendagri_code)->first();
+
+        $last_case = $area->medicalCases()
+                          ->orderBy('created_at', 'desc')
+                          ->first();
+
+        if (empty($last_case)) {
+            $last_area_case_number = "1";
+        } else {
+            $last_area_case_number = (integer)substr($last_case->case_code, 12);
+            $last_area_case_number++;
+            $last_area_case_number = (string) $last_area_case_number;
+        }
+
+        $new_case_code = "covid-";
+        $new_case_code .= $area->code_dinkes;
+        $new_case_code .= substr(date("Y"), 2, 2);
+        $new_case_code .= str_repeat("0", (4 - strlen($last_area_case_number)));
+        $new_case_code .= $last_area_case_number;
+
+        return $new_case_code;
     }
 
 }

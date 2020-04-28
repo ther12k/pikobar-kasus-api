@@ -15,9 +15,9 @@ class CreateMedicalCasesTable extends Migration
     {
         Schema::create('medical_cases', function (Blueprint $table) {
             $table->id();
-            $table->string('id_case')->nullable();
-            $table->string('id_case_national')->nullable();
-            $table->string('id_case_related')->nullable();
+            $table->string('case_code')->nullable();
+            $table->string('national_case_code')->nullable();
+            $table->string('related_case_code')->nullable();
             $table->string('nik')->unique()->nullable();
             $table->string('name');
             $table->date('birth_date')->nullable();

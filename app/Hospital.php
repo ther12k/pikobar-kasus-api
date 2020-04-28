@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property tinyInteger	$status	        nullable
  * @property timestamp    $created_at
  * @property timestamp    $updated_at
- * @property timestamp    $deleted_at
+ * @property timestamp    $deleted_at     Used for softdelete function
  */
 class Hospital extends Model
 {

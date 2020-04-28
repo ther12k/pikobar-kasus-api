@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string	      $title
  * @property tinyInteger	$sequence
  * @property tinyInteger	$status	    nullable
- * @property timestamp    $deleted_at
+ * @property timestamp    $deleted_at Used for softdelete function
  */
 class Occupation extends Model
 {
