@@ -32,12 +32,10 @@ class MedicalCaseController extends Controller
                 ->orWhere('name', 'like', '%'.$request->search.'%');
         }
 
-        if ($request->has('sort')) {
-            $order = $request->order == 'desc' ? 'desc' : 'asc';
-            $query->orderBy($request->sort, $order);
-        }
+        $order = $request->order == 'asc' ? 'asc' : 'desc';
+        $query->orderBy($request->query('sort','created_at'), $order);
 
-        $medicalCases = $query->paginate(15);
+        $medicalCases = $query->paginate($request->query('limit',15));
 
         return MedicalCaseResource::collection($medicalCases);
     }
@@ -63,7 +61,7 @@ class MedicalCaseController extends Controller
         $data = $request->all();
 
         // assign into payload
-        $data['id_case']         = MedicalCase::generateNextCaseCode($request->city_code);
+        $data['case_code']         = MedicalCase::generateNextCaseCode($request->city_code);
         $data['author_id']       = $user->id;
         $data['verified_status'] = $verifiedStatus;
 

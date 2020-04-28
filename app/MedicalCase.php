@@ -51,7 +51,7 @@ class MedicalCase extends Model
     const WNA = 2;
 
     protected $fillable = [
-        'case_code',
+        //'case_code',
         'national_case_code',
         'related_case_code',
         'nik',
@@ -108,6 +108,7 @@ class MedicalCase extends Model
         $area = Area::where('code_kemendagri', $kemendagri_code)->first();
 
         $last_case = $area->medicalCases()
+                          ->withThrashed()
                           ->orderBy('created_at', 'desc')
                           ->first();
 
