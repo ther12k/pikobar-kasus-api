@@ -26,7 +26,7 @@ class MedicalCaseStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'area_id' => 'required|exists:areas,id',
+            'city_code' => 'required|exists:areas,code_kemendagri',
             'occupation_id' => 'required|exists:occupations,id',
             'age' => 'required|integer',
             'gender' => 'required|in:' . MedicalCase::MALE_GENDER . ',' . MedicalCase::FEMALE_GENDER,

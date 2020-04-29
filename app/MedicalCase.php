@@ -65,7 +65,7 @@ class MedicalCase extends Model
         'city_code',
         'district_code',
         'village_code',
-        'office_addres',
+        'office_address',
         'occupation_id',
         'nationality',
         'nationality_country_id',
@@ -108,7 +108,7 @@ class MedicalCase extends Model
         $area = Area::where('code_kemendagri', $kemendagri_code)->first();
 
         $last_case = $area->medicalCases()
-                          ->withThrashed()
+                          ->withTrashed()
                           ->orderBy('created_at', 'desc')
                           ->first();
 
